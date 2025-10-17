@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiService } from '../services/api';
 
 interface ContactForm {
   name: string;
@@ -35,13 +36,13 @@ const Contact: React.FC = () => {
     setSubmitMessage('');
 
     try {
-      // Here you would typically send the data to your API
-      console.log('Contact form:', formData);
+      console.log('Sending contact form:', formData);
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Call the actual API
+      const response = await apiService.sendContactMessage(formData);
+      console.log('Contact form response:', response);
       
-      setSubmitMessage('Thank you for your message! We will respond within 24 hours.');
+      setSubmitMessage(response.message || 'Thank you for your message! We will respond within 24 hours.');
       setFormData({
         name: '',
         email: '',
@@ -49,8 +50,10 @@ const Contact: React.FC = () => {
         subject: '',
         message: ''
       });
-    } catch (error) {
-      setSubmitMessage('Sorry, there was an error sending your message. Please try again or call us directly.');
+    } catch (error: any) {
+      console.error('Contact form error:', error);
+      const errorMessage = error?.response?.data?.message || 'Sorry, there was an error sending your message. Please try again or call us directly at (555) 123-4567.';
+      setSubmitMessage(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

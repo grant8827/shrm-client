@@ -1,9 +1,36 @@
 import axios from 'axios';
 
+// Determine the API base URL based on environment
+const getApiBaseUrl = () => {
+  // If REACT_APP_API_URL is set, use it (for custom deployments)
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  
+  // Check if we're in development or production
+  const isDevelopment = process.env.NODE_ENV === 'development' || 
+                       window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1';
+  
+  if (isDevelopment) {
+    // Local development - check if server is running on 5001 (due to port conflict fix)
+    return 'http://localhost:5001/api';
+  } else {
+    // Production environment
+    return 'https://shrm-server-production.up.railway.app/api';
+  }
+};
+
+// Get the API URL and log it for debugging
+const apiBaseUrl = getApiBaseUrl();
+console.log('🔗 API Base URL:', apiBaseUrl);
+console.log('🌍 Environment:', process.env.NODE_ENV);
+console.log('🏠 Hostname:', window.location.hostname);
+
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
-  timeout: 10000,
+  baseURL: apiBaseUrl,
+  timeout: 15000, // Increased timeout for production
   headers: {
     'Content-Type': 'application/json',
   },
@@ -27,11 +54,20 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.error('API Error:', error);
+    
     if (error.response?.status === 401) {
       // Handle unauthorized access
       localStorage.removeItem('token');
       window.location.href = '/login';
+    } else if (error.code === 'NETWORK_ERROR' || !error.response) {
+      // Handle network errors
+      console.error('Network error - check if server is running:', error.message);
+    } else if (error.response?.status >= 500) {
+      // Handle server errors
+      console.error('Server error:', error.response.status, error.response.data);
     }
+    
     return Promise.reject(error);
   }
 );
