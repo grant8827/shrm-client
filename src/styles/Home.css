@@ -1,0 +1,199 @@
+/* 
+  This file is no longer needed as all styles for the Home page
+  have been migrated to Tailwind CSS classes directly in the Home.tsx component.
+  You can safely delete this file.
+*/
+
+
+/* Services Overview */
+.services-overview {
+  padding: 5rem 0;
+  background-color: #f8f9fa;
+}
+
+.services-overview h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: #3c4535;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-card h3 {
+  color: #3c4535;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.service-card p {
+  color: #3c4535;
+  line-height: 1.6;
+}
+
+/* About Preview */
+.about-preview {
+  padding: 5rem 0;
+  background-color: #fffbe6;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  color: #3c4535;
+  margin-bottom: 1.5rem;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #3c4535;
+  margin-bottom: 1.5rem;
+}
+
+.about-text .btn {
+  margin-top: 1rem;
+}
+
+/* Contact CTA */
+.contact-cta {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #3c4535 0%, #fac800 100%);
+  color: #fffbe6;
+  text-align: center;
+}
+
+.contact-cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #3c4535;
+}
+
+.contact-cta > p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #3c4535;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.contact-item h4 {
+  color: #3c4535;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-item p {
+  color: #3c4535;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 0;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .services-overview,
+  .about-preview,
+  .contact-cta {
+    padding: 3rem 0;
+  }
+  
+  .services-overview h2,
+  .about-text h2,
+  .contact-cta h2 {
+    font-size: 2rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-content {
+    padding: 0 1rem;
+  }
+  
+  .service-card {
+    padding: 1.5rem;
+  }
+}

@@ -1,0 +1,333 @@
+/* Base styles for SHRM Counseling Website */
+
+/* CSS Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #fafafa;
+  color: #1f2937;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #111827;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 3rem; }
+}
+
+@media (min-width: 1024px) {
+  h1 { font-size: 3.75rem; }
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+@media (min-width: 768px) {
+  h2 { font-size: 2.25rem; }
+}
+
+@media (min-width: 1024px) {
+  h2 { font-size: 3rem; }
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  h3 { font-size: 1.875rem; }
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  h4 { font-size: 1.5rem; }
+}
+
+p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.7;
+}
+
+@media (min-width: 768px) {
+  p { font-size: 1.125rem; }
+}
+
+a {
+  color: #3c4535;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fac800;
+}
+
+/* Basic utility classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3c4535, #fac800);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #3c4535;
+  border: 2px solid #3c4535;
+}
+
+.btn-secondary:hover {
+  background-color: #f7f8f5;
+  color: #3c4535;
+}
+
+@layer components {
+  /* Button Styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-primary;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-white text-primary-600 border-2 border-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+  }
+  
+  .btn-healing {
+    @apply btn bg-healing-500 text-white hover:bg-healing-600 focus:ring-healing-400 shadow-healing;
+  }
+  
+  .btn-warm {
+    @apply btn bg-warm-500 text-white hover:bg-warm-600 focus:ring-warm-400;
+  }
+  
+  .btn-outline {
+    @apply btn bg-transparent text-neutral-700 border border-neutral-300 hover:bg-neutral-50 focus:ring-neutral-500;
+  }
+  
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+  
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-soft border border-neutral-200 overflow-hidden;
+  }
+  
+  .card-body {
+    @apply p-6 md:p-8;
+  }
+  
+  .card-header {
+    @apply px-6 py-4 bg-neutral-50 border-b border-neutral-200;
+  }
+  
+  .card-healing {
+    @apply card border-healing-200 shadow-healing;
+  }
+  
+  .card-primary {
+    @apply card border-primary-200 shadow-primary;
+  }
+  
+  /* Form Styles */
+  .form-input {
+    @apply w-full px-4 py-3 text-base border border-neutral-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors duration-200;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-neutral-700 mb-2;
+  }
+  
+  .form-group {
+    @apply mb-6;
+  }
+  
+  .form-error {
+    @apply text-sm text-red-600 mt-1;
+  }
+  
+  /* Navigation Styles */
+  .nav-link {
+    @apply text-neutral-700 hover:text-primary-600 px-3 py-2 text-base font-medium transition-colors duration-200;
+  }
+  
+  .nav-link-active {
+    @apply nav-link text-primary-600 font-semibold;
+  }
+  
+  /* Section Styles */
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  .section-hero {
+    @apply section bg-gradient-to-br from-primary-50 to-healing-50;
+  }
+  
+  .section-alt {
+    @apply section bg-neutral-100;
+  }
+  
+  /* Container Styles */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-sm {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Text Styles */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-600 to-healing-500 bg-clip-text text-transparent;
+  }
+  
+  .text-healing {
+    @apply text-healing-600;
+  }
+  
+  .text-muted {
+    @apply text-neutral-600;
+  }
+  
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-800;
+  }
+  
+  .badge-healing {
+    @apply badge bg-healing-100 text-healing-800;
+  }
+  
+  .badge-warm {
+    @apply badge bg-warm-100 text-warm-800;
+  }
+  
+  /* Navigation Enhancements */
+  .nav-blur {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .nav-shadow-scroll {
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Animation Helpers */
+  .animate-fade-in {
+    @apply animate-fade-in;
+  }
+  
+  .animate-slide-up {
+    @apply animate-slide-up;
+  }
+  
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s infinite;
+  }
+  
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+  }
+  
+  /* Loading States */
+  .loading {
+    @apply animate-pulse;
+  }
+  
+  .loading-skeleton {
+    @apply bg-neutral-200 rounded animate-pulse;
+  }
+}
+
+@layer utilities {
+  /* Custom Utilities */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+  
+  /* Scroll Behavior */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  /* Hide Scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Focus Styles */
+  .focus-healing {
+    @apply focus:ring-2 focus:ring-healing-500 focus:ring-offset-2;
+  }
+  
+  .focus-primary {
+    @apply focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+}
