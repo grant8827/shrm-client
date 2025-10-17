@@ -97,8 +97,9 @@ const Appointments: React.FC = () => {
 
       // Submit to API
       const response = await apiService.createAppointment(formData);
+      console.log('Appointment submitted:', response);
       
-      setSubmitMessage('Thank you! Your appointment request has been submitted successfully. We will contact you within 24 hours to confirm your appointment.');
+      setSubmitMessage(response.message || 'Thank you! Your appointment request has been submitted successfully. We will contact you within 24 hours to confirm your appointment.');
       showNotification('Appointment request submitted successfully!', 'success');
       
       // Reset form
