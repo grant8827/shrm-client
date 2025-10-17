@@ -1,0 +1,16 @@
+# Netlify redirects file for React Router
+# This handles client-side routing by serving index.html for all routes
+
+# Redirect all routes to index.html for React Router
+/*    /index.html   200
+
+# API calls should not be redirected (if you have Netlify Functions)
+/api/*  /api/:splat  200
+
+# Handle common file extensions
+*.js    /:splat  200
+*.css   /:splat  200
+*.png   /:splat  200
+*.jpg   /:splat  200
+*.gif   /:splat  200
+*.svg   /:splat  200
