@@ -1,0 +1,15 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "npm start"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+[variables]
+NODE_ENV = "production"
+CI = "true"
+
+# Explicitly tell Railway this is a React app
+BUILD_PATH = "./build"
+REACT_APP_API_URL = "https://shrm-server-production.up.railway.app/api"

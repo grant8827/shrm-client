@@ -67,8 +67,8 @@ coverage/
 .cache
 .parcel-cache
 
-# next.js build output
-.next
+# React build output
+build/
 
 # nuxt.js build output
 .nuxt
