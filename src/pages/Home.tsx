@@ -42,7 +42,7 @@ const Home: React.FC = () => {
         className="relative bg-cover bg-center text-white py-24 md:py-32"
         style={{ backgroundImage: `url(${roadImg})` }}
       >
-        <div className="absolute inset-0 bg-shrm-primary bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-shrm-primary bg-opacity-30"></div>
         <div className="relative container mx-auto px-6 text-center animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold font-display text-shrm-secondary mb-4" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
             Hope, Healing, and Restoration

@@ -123,7 +123,7 @@ const Contact: React.FC = () => {
                   <div>
                     <h3 className="text-xl font-bold mb-2 text-shrm-secondary">Email</h3>
                     <div className="text-gray-100 text-sm space-y-1">
-                      <p><strong className="text-white">General:</strong> info@shrmcounseling.org</p>
+                      <p><strong className="text-white">General:</strong> info@safehavenrestorationministries.com</p>
                       <p><strong className="text-white">Appointments:</strong><Link to="/appointments"> Click here</Link></p>
                       {/*<p><strong className="text-white">Crisis:</strong> crisis@shrmcounseling.org</p>*/}
                     </div>
