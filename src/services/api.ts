@@ -26,6 +26,7 @@ const apiBaseUrl = getApiBaseUrl();
 console.log('🔗 API Base URL:', apiBaseUrl);
 console.log('🌍 Environment:', process.env.NODE_ENV);
 console.log('🏠 Hostname:', window.location.hostname);
+console.log('🔧 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
 
 // Create axios instance with base configuration
 const api = axios.create({
@@ -74,6 +75,18 @@ api.interceptors.response.use(
 
 // API service functions
 export const apiService = {
+  // Test connection
+  testConnection: async () => {
+    try {
+      const response = await api.get('/health');
+      console.log('✅ Server connection test successful:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('❌ Server connection test failed:', error);
+      throw error;
+    }
+  },
+
   // Authentication
   login: async (credentials: { email: string; password: string }) => {
     const response = await api.post('/auth/login', credentials);

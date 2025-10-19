@@ -35,12 +35,38 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     setSubmitMessage('');
 
+    // Frontend validation
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      setSubmitMessage('Please enter a valid name (at least 2 characters).');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.email.trim() || !formData.email.includes('@')) {
+      setSubmitMessage('Please enter a valid email address.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.subject || formData.subject === '') {
+      setSubmitMessage('Please select a subject for your message.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      setSubmitMessage('Please enter a message (at least 10 characters).');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      console.log('Sending contact form:', formData);
+      console.log('🚀 Sending contact form:', formData);
+      console.log('🔗 API URL will be determined by apiService');
       
       // Call the actual API
       const response = await apiService.sendContactMessage(formData);
-      console.log('Contact form response:', response);
+      console.log('✅ Contact form response:', response);
       
       setSubmitMessage(response.message || 'Thank you for your message! We will respond within 24 hours.');
       setFormData({
@@ -51,8 +77,31 @@ const Contact: React.FC = () => {
         message: ''
       });
     } catch (error: any) {
-      console.error('Contact form error:', error);
-      const errorMessage = error?.response?.data?.message || 'Sorry, there was an error sending your message. Please try again or call us directly at (555) 123-4567.';
+      console.error('❌ Contact form error:', error);
+      console.error('❌ Error details:', {
+        message: error.message,
+        status: error.response?.status,
+        statusText: error.response?.statusText,
+        data: error.response?.data,
+        config: {
+          url: error.config?.url,
+          baseURL: error.config?.baseURL,
+          method: error.config?.method
+        }
+      });
+      
+      let errorMessage = 'Sorry, there was an error sending your message. Please try again or call us directly at (555) 123-4567.';
+      
+      if (error.code === 'NETWORK_ERROR' || error.message.includes('Network Error')) {
+        errorMessage = 'Network error: Unable to connect to server. Please check your internet connection and try again.';
+      } else if (error.response?.status === 404) {
+        errorMessage = 'API endpoint not found. The server may be down or the URL is incorrect.';
+      } else if (error.response?.status === 500) {
+        errorMessage = 'Server error occurred. Please try again in a few minutes.';
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+      
       setSubmitMessage(errorMessage);
     } finally {
       setIsSubmitting(false);
@@ -152,10 +201,10 @@ const Contact: React.FC = () => {
                         <strong className="text-white">Sunday:</strong>
                         <span>Closed</span>
                       </li>
-                      <li className="flex justify-between gap-4 pt-2 border-t border-white/20">
+                      {/*<li className="flex justify-between gap-4 pt-2 border-t border-white/20">
                         <strong className="text-shrm-secondary">Emergency:</strong>
                         <span className="text-shrm-secondary font-bold">24/7</span>
-                      </li>
+                      </li>*/}
                     </ul>
                   </div>
                 </div>
