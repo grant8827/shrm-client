@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
         }
       });
       
-      let errorMessage = 'Sorry, there was an error sending your message. Please try again or call us directly at (555) 123-4567.';
+      let errorMessage = 'Sorry, there was an error sending your message. Please try again or contact us directly via email.';
       
       if (error.code === 'NETWORK_ERROR' || error.message.includes('Network Error')) {
         errorMessage = 'Network error: Unable to connect to server. Please check your internet connection and try again.';
@@ -273,7 +273,7 @@ const Contact: React.FC = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-shrm-secondary focus:ring-2 focus:ring-shrm-secondary/20 transition-all duration-200 outline-none"
-                      placeholder="(555) 123-4567"
+                      placeholder="Your phone number (optional)"
                     />
                   </div>
                 </div>
